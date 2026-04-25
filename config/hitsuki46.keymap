@@ -205,7 +205,7 @@
         layer_4 {
             bindings = <
 &none &kp EXCL                                       &kp DQT                                           &kp GRAVE                   &kp F2             &kp F5                               &kp LC(PAGE_UP)  &kp LG(LEFT_ARROW)  &mkp MB3        &kp LG(C_AL_FILE_BROWSER)  &kp LC(PAGE_DOWN) &none
-&none &kp LEFT_PARENTHESIS                           &mt_exit_AML_on_tap LEFT_SHIFT RIGHT_PARENTHESIS  &kp LEFT_BRACKET            &kp RIGHT_BRACKET  &kp TILDE                            &kp PAGE_UP      &mkp LCLK           &kp UP_ARROW    &mkp RCLK                  &kp HOME          &none
+&none &kp LEFT_PARENTHESIS                           &mt LEFT_SHIFT RIGHT_PARENTHESIS  &kp LEFT_BRACKET            &kp RIGHT_BRACKET  &kp TILDE                            &kp PAGE_UP      &mkp LCLK           &kp UP_ARROW    &mkp RCLK                  &kp HOME          &none
 &none &kp INT_YEN                                    &kp PIPE                                          &mt LEFT_CONTROL SEMICOLON  &kp COLON          &kp UNDERSCORE                       &kp PAGE_DOWN    &kp LEFT            &kp DOWN_ARROW  &kp RIGHT                  &kp END           &none
                                                      &kp LEFT_SHIFT                                    &kp LEFT_CONTROL            &none              &to 0           &mo 1    &kp DELETE  &kp K_APP        &none               &none                      &mo 6
             >;
