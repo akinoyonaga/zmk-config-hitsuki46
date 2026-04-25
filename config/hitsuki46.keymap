@@ -234,7 +234,7 @@
 &none  &bt0_win    &bt1_win        &bt2_mac  &bt3_mac  &bt4_win                   &bt0_win  &bt1_win  &bt2_mac  &bt3_mac  &bt4_win  &none  
 &none  &none       &none           &none     &none     &none                      &none     &none     &none     &none     &none     &none  
 &none  &bt BT_CLR  &none           &none     &none     &none                      &none     &none     &none     &none     &none     &none  
-                   &bt BT_CLR  &bt BT_CLR_ALL  &none     &none   &tog 0    &none  &none     &none     &none     &tog_ls
+                   &bt BT_CLR  &bt BT_CLR_ALL  &none     &none   &tog 0    &none  &none     &none     &none     &none
             >;
         };
     };
