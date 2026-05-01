@@ -226,7 +226,7 @@
 &none  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &none
 &none  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &none
 &none  &trans  &trans  &trans  &trans  &trans                    &trans  &trans  &trans  &trans  &trans  &none
-               &trans  &trans  &none   &tog 0  &trans    &trans  &trans  &none   &none   &none
+               &trans  &trans  &none   &tog 0  &trans    &trans  &trans  &none   &tog_ls_on   &none
             >;
         };
 
