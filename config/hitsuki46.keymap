@@ -157,7 +157,7 @@
 
         atmark {
             bindings = <&kp AT>;
-            key-positions = <9 8>;
+            key-positions = <9 10>;
         };
     };
 
@@ -167,10 +167,10 @@
         default_layer {
             display-name = "Default Layer";
             bindings = <
-&kp TAB         &kp Q           &kp W   &kp E               &kp R        &kp T  &kp Y  &kp U          &kp I                    &kp O               &kp P                &kp BACKSPACE
-&kp SPACE       &mt LEFT_ALT A  &kp S   &mt LEFT_SHIFT D    &kp F        &kp G  &kp H  &kp J          &mt RIGHT_SHIFT K        &kp L               &mt RIGHT_ALT MINUS  &lt 2 ENTER
-&kp LEFT_SHIFT  &kp Z           &kp X   &mt LEFT_CONTROL C  &kp V        &kp B  &kp N  &kp M          &mt RIGHT_CONTROL COMMA  &kp DOT             &kp SLASH            &kp LEFT_SHIFT
-                &kp LEFT_WIN    &kp AT  &lt 3 TAB           &lt 2 SPACE  &none  &none  &kp BACKSPACE  &lt 2 ENTER              &lt 7 SINGLE_QUOTE  &lt 6 LC(SPACE)
+&kp TAB                &kp Q           &kp W   &kp E               &kp R        &kp T  &kp Y  &kp U        &kp I                    &kp O               &kp P                &kp BACKSPACE
+&kp SPACE              &mt LEFT_ALT A  &kp S   &mt LEFT_SHIFT D    &kp F        &kp G  &kp H  &kp J        &mt RIGHT_SHIFT K        &kp L               &mt RIGHT_ALT MINUS  &lt 2 ENTER
+&mt LEFT_SHIFT ESCAPE  &kp Z           &kp X   &mt LEFT_CONTROL C  &kp V        &kp B  &kp N  &kp M        &mt RIGHT_CONTROL COMMA  &kp DOT             &kp SLASH            &kp LEFT_SHIFT
+                       &kp LEFT_WIN    &kp AT  &lt 3 TAB           &lt 2 SPACE  &none  &none  &lt 3 ENTER  &lt 2 BACKSPACE          &lt 7 SINGLE_QUOTE  &lt 6 LC(SPACE)
             >;
         };
 
@@ -188,16 +188,16 @@
 &none  &kp EXCL              &kp DQT                &kp GRAVE                    &kp F2             &kp F5          &kp LC(PAGE_UP)  &mkp MB4   &mkp MB3        &mkp MB5   &kp LC(PAGE_DOWN)  &none
 &none  &kp LEFT_PARENTHESIS  &kp RIGHT_PARENTHESIS  &mt LEFT_SHIFT LEFT_BRACKET  &kp RIGHT_BRACKET  &kp TILDE       &kp PAGE_UP      &mkp LCLK  &kp UP_ARROW    &mkp RCLK  &kp HOME           &none
 &none  &kp INT_YEN           &kp PIPE               &mt LEFT_CONTROL SEMICOLON   &kp COLON          &kp UNDERSCORE  &kp PAGE_DOWN    &kp LEFT   &kp DOWN_ARROW  &kp RIGHT  &kp END            &none
-       &kp LEFT_SHIFT        &kp LEFT_CONTROL       &none                        &to 0              &mo 1           &kp DELETE       &kp K_APP  &none           &none      &mo 6
+       &kp LEFT_SHIFT        &kp LEFT_CONTROL       &none                        &to 0              &mo 1           &none            &kp K_APP  &kp DELETE      &none      &mo 6
             >;
         };
 
         layer_3 {
             bindings = <
-&none  &kp ESCAPE  &kp HASH        &kp DOLLAR            &kp PERCENT    &kp AMPERSAND     &kp SLASH      &kp N7        &kp N8        &kp N9        &kp MINUS   &none
-&none  &kp F7      &kp F8          &kp F9                &kp F10        &kp SINGLE_QUOTE  &kp ASTERISK   &kp NUMBER_4  &kp N5        &kp NUMBER_6  &kp PLUS    &none
-&none  &kp LA(F4)  &none           &kp LC(SEMICOLON)     &kp LC(COLON)  &kp UNDERSCORE    &kp F4         &kp NUMBER_1  &kp NUMBER_2  &kp NUMBER_3  &kp EQUAL   &none
-       &kp LC(F4)  &kp LEFT_SHIFT  &kp LS(LEFT_CONTROL)  &to 0          &tog 3            &kp BACKSPACE  &kp N0        &none         &none         &kp DELETE
+&none  &kp ESCAPE  &kp HASH        &kp DOLLAR            &kp PERCENT    &kp AMPERSAND     &kp SLASH     &kp N7        &kp N8         &kp N9        &kp MINUS   &none
+&none  &kp F7      &kp F8          &kp F9                &kp F10        &kp SINGLE_QUOTE  &kp ASTERISK  &kp NUMBER_4  &kp N5         &kp NUMBER_6  &kp PLUS    &none
+&none  &kp LA(F4)  &none           &kp LC(SEMICOLON)     &kp LC(COLON)  &kp UNDERSCORE    &kp F4        &kp NUMBER_1  &kp NUMBER_2   &kp NUMBER_3  &kp EQUAL   &none
+       &kp LC(F4)  &kp LEFT_SHIFT  &kp LS(LEFT_CONTROL)  &to 0          &tog 3            &none         &kp N0        &kp BACKSPACE  &none         &kp DELETE
             >;
         };
 
