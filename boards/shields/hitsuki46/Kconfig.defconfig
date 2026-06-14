@@ -19,4 +19,7 @@ config ZMK_KEYBOARD_NAME
 config ZMK_SPLIT
     default y
 
+config PAW3222
+    default y
+
 endif
