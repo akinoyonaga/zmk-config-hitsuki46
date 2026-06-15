@@ -74,14 +74,11 @@
 
     trackball_left: trackball@0 {
         status = "okay";
-        compatible = "pixart,pmw3610-alt";
+        compatible = "pixart,paw3222";
         reg = <0>;
         label = "TRACKBALL_LEFT";
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio1 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        evt-type = <2>;  // INPUT_EV_REL - relative movement events
-        x-input-code = <0>;  // INPUT_REL_X
-        y-input-code = <1>;  // INPUT_REL_Y
 
         // CPI setting (200-3200, step 200, default 600)
         cpi = <800>;
