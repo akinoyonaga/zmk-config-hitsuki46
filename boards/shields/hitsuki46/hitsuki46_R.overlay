@@ -145,9 +145,6 @@
         // CPI setting (200-3200, step 200, default 600)
         res-cpi = <800>;
 
-        // Invert Y axis only (X axis is correct without inversion)
-        invert-y;
-
         // Power management - enable force-awake to fix freeze and wake issues
         // When ZMK is ACTIVE, sensor stays in RUN mode for responsive cursor
         // When ZMK enters IDLE/SLEEP, sensor falls back to normal downshift mode
