@@ -83,10 +83,6 @@
         // CPI setting (200-3200, step 200, default 600)
         res-cpi = <800>;
 
-        // 180 degree orientation (invert both X and Y)
-        invert-x;
-        invert-y;
-
         // Power management
         // NOTE: force-awake was removed to fix cursor drift issue when idle
         // The sensor will now use normal downshift mode (RUN -> REST1 -> REST2 -> REST3)
