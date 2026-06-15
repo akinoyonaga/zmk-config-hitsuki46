@@ -156,9 +156,6 @@
         reg = <0>;
         spi-max-frequency = <2000000>;
         irq-gpios = <&gpio1 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
-        evt-type = <2>;  // INPUT_EV_REL - relative movement events for mouse
-        x-input-code = <0>;  // INPUT_REL_X
-        y-input-code = <1>;  // INPUT_REL_Y
 
         // CPI setting (200-3200, step 200, default 600)
         cpi = <800>;
