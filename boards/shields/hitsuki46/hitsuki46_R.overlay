@@ -158,7 +158,7 @@
         irq-gpios = <&gpio1 1 (GPIO_ACTIVE_LOW | GPIO_PULL_UP)>;
 
         // CPI setting (200-3200, step 200, default 600)
-        cpi = <800>;
+        res-cpi = <800>;
 
         // Invert Y axis only (X axis is correct without inversion)
         invert-y;
