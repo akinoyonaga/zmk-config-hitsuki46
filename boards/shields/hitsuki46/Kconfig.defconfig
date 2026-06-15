@@ -9,6 +9,9 @@ config ZMK_SPLIT
 config ZMK_SPLIT_ROLE_CENTRAL
     default y
 
+config PAW3222
+    default y
+
 endif
 
 if SHIELD_HITSUKI46_L
