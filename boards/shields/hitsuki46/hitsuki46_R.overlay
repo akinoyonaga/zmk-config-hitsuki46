@@ -32,17 +32,6 @@
 &trackball_left_split {
 };
 
-// XY Clipper - clips diagonal input to dominant axis only
-/ {
-    xy_clipper: xy_clipper {
-        compatible = "zmk,input-processor-xy-clipper";
-        #input-processor-cells = <0>;
-        threshold = <20>;  // Values below this threshold on the weaker axis are clipped
-        invert-x = <0>;
-        invert-y = <0>;
-    };
-};
-
 // Left trackball listener (from peripheral)
 / {
     trackball_left_listener: trackball_left_listener {
