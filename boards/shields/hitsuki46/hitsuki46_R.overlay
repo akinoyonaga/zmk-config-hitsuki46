@@ -42,7 +42,6 @@
 #if LEFT_TRACKBALL_MODE == 1
         // SCROLL MODE: Always scroll
         input-processors =
-            <&xy_clipper>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_scaler 2 5>;
 #else
@@ -57,7 +56,6 @@
         scroller {
             layers = <5>;
             input-processors =
-                <&xy_clipper>,
                 <&zip_xy_to_scroll_mapper>,
                 <&zip_scroll_scaler 2 5>;
         };
@@ -73,7 +71,6 @@
 #if RIGHT_TRACKBALL_MODE == 1
     // SCROLL MODE: Always scroll
     input-processors =
-        <&xy_clipper>,
         <&zip_xy_to_scroll_mapper>,
         <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
         <&zip_scroll_scaler 2 5>;
@@ -85,7 +82,6 @@
     scroller {
         layers = <5>;
         input-processors =
-            <&xy_clipper>,
             <&zip_xy_to_scroll_mapper>,
             <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
             <&zip_scroll_scaler 2 5>;
