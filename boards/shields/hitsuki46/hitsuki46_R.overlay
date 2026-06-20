@@ -74,6 +74,17 @@
         &zip_xy_transform (INPUT_TRANSFORM_X_INVERT | INPUT_TRANSFORM_Y_INVERT)
         &zip_temp_layer 5 10000
         &sensor_rotation
+    >;
+    
+    scroller {
+        layers = <6>;
+        process-next;
+        input-processors = <
+            &zip_xy_to_scroll_mapper
+            &zip_scroll_transform INPUT_TRANSFORM_X_INVERT
+            &zip_scroll_scaler 2 5
+        >;
+    };
 #else
     // CURSOR MODE: Normal cursor with auto mouse layer
     input-processors = <&zip_temp_layer 1 700>;
@@ -81,10 +92,11 @@
     // Enable scroll on layer 6
     scroller {
         layers = <6>;
-        input-processors =
-            <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_transform INPUT_TRANSFORM_Y_INVERT>,
-            <&zip_scroll_scaler 2 5>;
+        input-processors = <
+            &zip_xy_to_scroll_mapper
+            &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT
+            &zip_scroll_scaler 2 5
+        >;
     };
 #endif
 };
