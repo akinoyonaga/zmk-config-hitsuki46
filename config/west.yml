@@ -13,6 +13,8 @@ manifest:
       url-base: https://github.com/iwk7273
     - name: kot149
       url-base: https://github.com/kot149
+    - name: hsgw
+      url-base: https://github.com/hsgw
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -36,5 +38,9 @@ manifest:
     - name: zmk-layout-shift
       remote: kot149
       revision: v1
+    - name: zmk-feature-sensor_rotation
+      remote: hsgw
+      revision: main
+      path: modules/zmk-feature-sensor_rotation
   self:
     path: config
