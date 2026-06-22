@@ -224,7 +224,7 @@
             bindings = <
 &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &none
 &none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &none
+&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &tog_ls_on
        &trans  &trans  &none   &tog 0  &trans  &trans  &trans  &none   &tog_ls_on  &none
             >;
         };
