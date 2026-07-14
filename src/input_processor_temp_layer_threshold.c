@@ -6,7 +6,7 @@
 
 #define DT_DRV_COMPAT zmk_input_processor_temp_layer_threshold
 
-#include <stdlib.h>
+#include <stdint.h>
 #include <zephyr/device.h>
 #include <zephyr/kernel.h>
 #include <zephyr/logging/log.h>
@@ -58,6 +58,16 @@ static bool position_is_excluded(const struct temp_layer_threshold_config *confi
 static bool should_quick_tap(const struct temp_layer_threshold_config *config, int64_t last_tapped,
                              int64_t now) {
     return (last_tapped + config->require_prior_idle_ms) > now;
+}
+
+static int32_t add_movement_saturated(int32_t accumulated, int32_t movement) {
+    int64_t magnitude = movement < 0 ? -(int64_t)movement : (int64_t)movement;
+
+    if (magnitude >= INT32_MAX || accumulated >= INT32_MAX - magnitude) {
+        return INT32_MAX;
+    }
+
+    return accumulated + (int32_t)magnitude;
 }
 
 static void update_layer_state(struct temp_layer_threshold_state *state, bool activate) {
@@ -232,7 +242,8 @@ static int temp_layer_threshold_handle_event(const struct device *dev, struct in
         data->state.threshold_reached = false;
     }
     data->state.last_movement_timestamp = now;
-    data->state.accumulated_movement += abs(event->value);
+    data->state.accumulated_movement =
+        add_movement_saturated(data->state.accumulated_movement, event->value);
 
     if (!data->state.is_active &&
         !should_quick_tap(config, data->state.last_tapped_timestamp, now) &&
