@@ -22,7 +22,7 @@
         compatible = "zmk,input-processor-temp-layer-threshold";
         #input-processor-cells = <2>;
 
-        threshold = <15>;
+        threshold = <30>;
 
         reset-timeout-ms = <200>;
 
