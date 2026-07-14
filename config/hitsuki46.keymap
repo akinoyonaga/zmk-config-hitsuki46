@@ -103,6 +103,16 @@
     };
 
     behaviors {
+        repeat_lt: repeat_layer_tap {
+            compatible = "zmk,behavior-hold-tap";
+            #binding-cells = <2>;
+            bindings = <&mo>, <&kp>;
+            flavor = "tap-preferred";
+            tapping-term-ms = <200>;
+            quick-tap-ms = <200>;
+            display-name = "Repeat Layer-Tap";
+        };
+
         encoder_msc: sensor_rotate_msc {
             compatible = "zmk,behavior-sensor-rotate-var";
             #sensor-binding-cells = <2>;
@@ -169,18 +179,18 @@
             display-name = "Default Layer";
             bindings = <
 &kp TAB                &kp Q           &kp W   &kp E               &kp R        &kp T  &kp Y  &kp U            &kp I                    &kp O               &kp P                &kp BACKSPACE
-&kp SPACE              &mt LEFT_ALT A  &kp S   &mt LEFT_SHIFT D    &kp F        &kp G  &kp H  &kp J            &mt RIGHT_SHIFT K        &kp L               &mt RIGHT_ALT MINUS  &lt 2 ENTER
+&kp SPACE              &mt LEFT_ALT A  &kp S   &mt LEFT_SHIFT D    &kp F        &kp G  &kp H  &kp J            &mt RIGHT_SHIFT K        &kp L               &mt RIGHT_ALT MINUS  &repeat_lt 2 ENTER
 &mt LEFT_SHIFT ESCAPE  &kp Z           &kp X   &mt LEFT_CONTROL C  &kp V        &kp B  &kp N  &kp M            &mt RIGHT_CONTROL COMMA  &kp DOT             &kp SLASH            &kp LEFT_SHIFT
-                       &kp LEFT_WIN    &kp AT  &lt 3 TAB           &lt 2 SPACE  &none  &none  &lt 3 BACKSPACE  &lt 2 ENTER              &lt 7 SINGLE_QUOTE  &lt 6 LC(SPACE)
+                       &kp LEFT_WIN    &kp AT  &lt 3 TAB           &lt 2 SPACE  &none  &none  &repeat_lt 3 BACKSPACE  &repeat_lt 2 ENTER       &lt 7 SINGLE_QUOTE  &lt 6 LC(SPACE)
             >;
         };
 
         mac_layer {
             bindings = <
 &kp TAB         &kp Q               &kp W   &kp E               &kp R      &kp T        &kp Y          &kp U        &kp I                    &mt LEFT_ALT O      &kp P                &kp BACKSPACE
-&kp SPACE       &mt LEFT_COMMAND A  &kp S   &mt LEFT_SHIFT D    &kp F      &kp G        &kp H          &kp J        &mt RIGHT_SHIFT K        &kp L               &mt RIGHT_ALT MINUS  &lt 2 ENTER
+&kp SPACE       &mt LEFT_COMMAND A  &kp S   &mt LEFT_SHIFT D    &kp F      &kp G        &kp H          &kp J        &mt RIGHT_SHIFT K        &kp L               &mt RIGHT_ALT MINUS  &repeat_lt 2 ENTER
 &kp LEFT_SHIFT  &kp Z               &kp X   &mt LEFT_COMMAND C  &kp V      &kp B        &kp N          &kp M        &mt RIGHT_COMMAND COMMA  &kp DOT             &kp SLASH            &kp LEFT_SHIFT
-                &kp LEFT_WIN        &kp AT  &none               &lt 3 TAB  &lt 4 SPACE  &kp BACKSPACE  &lt 4 ENTER  &none                    &lt 7 SINGLE_QUOTE  &lt 6 LC(SPACE)
+                &kp LEFT_WIN        &kp AT  &none               &lt 3 TAB  &lt 4 SPACE  &kp BACKSPACE  &repeat_lt 4 ENTER  &none               &lt 7 SINGLE_QUOTE  &lt 6 LC(SPACE)
             >;
         };
 
