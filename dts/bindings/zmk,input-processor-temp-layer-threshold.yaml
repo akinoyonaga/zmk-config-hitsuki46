@@ -1,0 +1,42 @@
+# Copyright (c) 2024 The ZMK Contributors
+# SPDX-License-Identifier: MIT
+
+description: |
+  Temporary layer input processor with a cumulative movement threshold.
+  The target layer is activated only after relative movement reaches the
+  configured threshold within reset-timeout-ms.
+
+compatible: "zmk,input-processor-temp-layer-threshold"
+
+properties:
+  "#input-processor-cells":
+    type: int
+    required: true
+    const: 2
+
+  track-remainders:
+    type: boolean
+
+  threshold:
+    type: int
+    default: 0
+    description: Cumulative relative movement required before activation
+
+  require-prior-idle-ms:
+    type: int
+    default: 0
+    description: Milliseconds without a key press required before activation
+
+  excluded-positions:
+    type: array
+    default: []
+    description: Key positions which do not deactivate the temporary layer
+
+  reset-timeout-ms:
+    type: int
+    default: 200
+    description: Inactivity interval which resets accumulated movement
+
+input-processor-cells:
+  - param1
+  - param2

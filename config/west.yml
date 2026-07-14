@@ -15,8 +15,6 @@ manifest:
       url-base: https://github.com/kot149
     - name: hsgw
       url-base: https://github.com/hsgw
-    - name: yamaryu211
-      url-base: https://github.com/yamaryu211
   projects:
     - name: zmk
       remote: zmkfirmware
@@ -44,8 +42,5 @@ manifest:
       remote: hsgw
       revision: main
       path: modules/zmk-feature-sensor_rotation
-    - name: zmk-input-processor-temp-layer-threshold
-      remote: yamaryu211
-      revision: main
   self:
     path: config

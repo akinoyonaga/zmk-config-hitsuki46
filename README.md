@@ -18,6 +18,17 @@ hitsuki46は46キーの分割キーボードで、両手にトラックボール
 
 ## トラックボール設定
 
+### 閾値付き Auto Mouse Layer
+
+右トラックボールの相対移動量が 200 ms 以内に累計 15 を超えた場合だけ、
+Auto Mouse Layer（レイヤー 5）を有効にします。微小なセンサー入力ではレイヤーは
+切り替わりません。有効化後は最後の移動から 10 秒でレイヤー 5 を解除します。
+
+設定値は `boards/shields/hitsuki46/hitsuki46_R.overlay` の `aml_threshold` と
+`&aml_threshold 5 10000` で変更できます。processor の実装はこのリポジトリの
+`src/input_processor_temp_layer_threshold.c` に含まれているため、外部モジュールへの
+依存はありません。
+
 ### センサー仕様
 - **センサー**: PixArt PMW3610 (badjeff/zmk-pmw3610-driver使用)
 - **CPI**: 800
