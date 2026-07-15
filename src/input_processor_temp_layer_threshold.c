@@ -118,6 +118,8 @@ static void layer_action_work_cb(struct k_work *work) {
 
 static K_WORK_DEFINE(layer_action_work, layer_action_work_cb);
 
+extern const struct zmk_listener zmk_listener_processor_temp_layer_threshold;
+
 static void layer_disable_callback(struct k_work *work) {
     struct k_work_delayable *delayable = k_work_delayable_from_work(work);
     struct layer_state_action action = {
@@ -154,6 +156,7 @@ static int handle_position_state_changed(const struct device *dev, const zmk_eve
     const struct zmk_position_state_changed *event = as_zmk_position_state_changed(eh);
     struct temp_layer_threshold_data *data = dev->data;
     const struct temp_layer_threshold_config *config = dev->config;
+    bool reroute_to_keymap = false;
 
     if (!event->state) {
         return ZMK_EV_EVENT_BUBBLE;
@@ -165,9 +168,25 @@ static int handle_position_state_changed(const struct device *dev, const zmk_eve
     if (data->state.is_active && config->num_positions > 0 &&
         !position_is_excluded(config, event->position)) {
         update_layer_state(&data->state, false);
+        reroute_to_keymap = true;
     }
 
     k_mutex_unlock(&data->lock);
+
+    if (reroute_to_keymap) {
+        struct zmk_position_state_changed_event rerouted_event =
+            copy_raised_zmk_position_state_changed(event);
+        int ret = ZMK_EVENT_RAISE_AFTER(rerouted_event, processor_temp_layer_threshold);
+
+        if (ret < 0) {
+            LOG_ERR("Failed to reroute position %u after deactivating layer (%d)",
+                    event->position, ret);
+            return ret;
+        }
+
+        return ZMK_EV_EVENT_CAPTURED;
+    }
+
     return ZMK_EV_EVENT_BUBBLE;
 }
 
