@@ -61,7 +61,7 @@
         // SCROLL MODE: Always scroll
         input-processors =
             <&zip_xy_to_scroll_mapper>,
-            <&zip_scroll_scaler 1 5>;
+            <&zip_scroll_scaler 1 2>;
 #else
         // CURSOR MODE: Normal cursor with auto mouse layer
         // Y-axis transform needed because sensor has invert-x/y for 180deg orientation
@@ -75,7 +75,7 @@
             layers = <6>;
             input-processors =
                 <&zip_xy_to_scroll_mapper>,
-                <&zip_scroll_scaler 1 5>;
+                <&zip_scroll_scaler 1 2>;
         };
 #endif
     };
@@ -99,7 +99,7 @@
         input-processors = <
             &zip_xy_to_scroll_mapper
             &zip_scroll_transform INPUT_TRANSFORM_X_INVERT
-            &zip_scroll_scaler 1 5
+            &zip_scroll_scaler 1 2
         >;
     };
 #else
@@ -112,7 +112,7 @@
         input-processors = <
             &zip_xy_to_scroll_mapper
             &zip_scroll_transform INPUT_TRANSFORM_Y_INVERT
-            &zip_scroll_scaler 1 5
+            &zip_scroll_scaler 1 2
         >;
     };
 #endif
