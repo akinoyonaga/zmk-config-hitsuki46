@@ -12,10 +12,12 @@
 #include <zephyr/logging/log.h>
 
 #include <drivers/input_processor.h>
+#include <zmk/behavior.h>
 #include <zmk/events/keycode_state_changed.h>
 #include <zmk/events/layer_state_changed.h>
 #include <zmk/events/position_state_changed.h>
 #include <zmk/keymap.h>
+#include <zmk/matrix.h>
 
 LOG_MODULE_DECLARE(zmk, CONFIG_ZMK_LOG_LEVEL);
 
@@ -38,9 +40,16 @@ struct temp_layer_threshold_state {
     int32_t accumulated_movement;
 };
 
+struct rerouted_position_state {
+    bool active;
+    zmk_keymap_layer_id_t layer;
+    struct zmk_behavior_binding binding;
+};
+
 struct temp_layer_threshold_data {
     struct k_mutex lock;
     struct temp_layer_threshold_state state;
+    struct rerouted_position_state rerouted_positions[ZMK_KEYMAP_LEN];
 };
 
 static struct k_work_delayable layer_disable_works[MAX_LAYERS];
@@ -154,36 +163,58 @@ static int handle_position_state_changed(const struct device *dev, const zmk_eve
     const struct zmk_position_state_changed *event = as_zmk_position_state_changed(eh);
     struct temp_layer_threshold_data *data = dev->data;
     const struct temp_layer_threshold_config *config = dev->config;
-    bool apply_after_deactivation = false;
+    struct rerouted_position_state rerouted = {};
 
-    if (!event->state) {
-        return ZMK_EV_EVENT_BUBBLE;
+    if (event->position >= ZMK_KEYMAP_LEN) {
+        LOG_ERR("Invalid key position: %u", event->position);
+        return -EINVAL;
     }
     if (k_mutex_lock(&data->lock, K_FOREVER) < 0) {
         return -EAGAIN;
     }
 
-    if (data->state.is_active && config->num_positions > 0 &&
+    if (!event->state && data->rerouted_positions[event->position].active) {
+        rerouted = data->rerouted_positions[event->position];
+        data->rerouted_positions[event->position].active = false;
+    } else if (event->state && data->state.is_active && config->num_positions > 0 &&
         !position_is_excluded(config, event->position)) {
+        const zmk_keymap_layer_id_t default_layer = zmk_keymap_layer_default();
+        const struct zmk_behavior_binding *binding =
+            zmk_keymap_get_layer_binding_at_idx(default_layer, event->position);
+
         update_layer_state(&data->state, false);
-        apply_after_deactivation = true;
+
+        if (binding) {
+            rerouted = (struct rerouted_position_state){
+                .active = true,
+                .layer = default_layer,
+                .binding = *binding,
+            };
+            data->rerouted_positions[event->position] = rerouted;
+        }
     }
 
     k_mutex_unlock(&data->lock);
 
-    if (apply_after_deactivation) {
-        /*
-         * The keymap listener runs before this input processor's listener, so the original
-         * press has already been resolved against the AML layer. Process the same press again
-         * after deactivation to snapshot and invoke the newly active (normally default) layer.
-         * The matching release will use that snapshot in zmk_keymap_active_behavior_layer.
-         */
-        int ret = zmk_keymap_position_state_changed(event->source, event->position, event->state,
-                                                    event->timestamp);
+    if (rerouted.active) {
+        struct zmk_behavior_binding_event binding_event = {
+            .layer = rerouted.layer,
+            .position = event->position,
+            .timestamp = event->timestamp,
+#if IS_ENABLED(CONFIG_ZMK_SPLIT)
+            .source = event->source,
+#endif
+        };
+        int ret = zmk_behavior_invoke_binding(&rerouted.binding, binding_event, event->state);
 
         if (ret < 0) {
-            LOG_ERR("Failed to apply position %u after deactivating layer (%d)",
-                    event->position, ret);
+            LOG_ERR("Failed to apply default-layer position %u (%d)", event->position, ret);
+
+            if (event->state && k_mutex_lock(&data->lock, K_FOREVER) == 0) {
+                data->rerouted_positions[event->position].active = false;
+                k_mutex_unlock(&data->lock);
+            }
+
             return ret;
         }
 

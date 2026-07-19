@@ -226,16 +226,16 @@
 &none  &none  &none  &none   &none  &none  &none  &none      &none  &none      &none  &none
 &none  &none  &none  &none   &none  &none  &none  &mkp LCLK  &none  &mkp RCLK  &none  &none
 &none  &none  &none  &none   &none  &none  &none  &none      &none  &none      &none  &none
-       &none  &none  &tog 0  &mo 6  &none  &none  &none      &none  &none      &none
+       &none  &none  &tog 0  &none  &none  &none  &none      &none  &none      &none
             >;
         };
 
         SCROLL {
             bindings = <
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &none
-&none  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &tog_ls_on
-       &trans  &trans  &none   &tog 0  &trans  &trans  &trans  &none   &tog_ls_on  &none
+&none   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &none
+&none   &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &none
+&tog 0  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans  &trans      &trans  &tog_ls_on
+        &trans  &trans  &none   &tog 0  &trans  &trans  &trans  &none   &tog_ls_on  &none
             >;
         };
 
